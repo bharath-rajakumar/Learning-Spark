@@ -25,6 +25,9 @@ public class BasicSparkSQL {
                 "retweet_count");
         System.out.println("Query Result :");
         int count  = 0;
+
+        //Cache the dataframe before printing
+        sqlContext.cacheTable("tweets");
         for(Row row : topReTweetedTweets.collect()) {
             if(row.get(0).toString() != null && row.get(1).toString() != null && row.length() == 2) {
                 System.out.println(count + ", "+ row.get(0).toString() + ", " + row.get(1).toString());
